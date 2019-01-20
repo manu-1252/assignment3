@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>shop</title>
+    <script type="text/javascript">
+         function sendReq()
+         {
+           var u=document.getElementById("usb").value;
+           var m=document.getElementById("mouse").value;
+           var k=document.getElementById("key").value;
+           var l=document.getElementById("laptop").value;
+           var queryString="cart.php?u="+u+"&m="+m+"&k="+k+"&l="+l;
+           var xmlObj=new XMLHttpRequest();
+           xmlObj.onreadystatechange=function()
+                                       {
+                                          if(this.readyState == 4 && this.status == 200)
+                                          {
+                                            document.getElementById("res").innerHTML=this.responseText;
+                                          }
+                                       };
+           xmlObj.open("GET",queryString,true);
+           xmlObj.send();
+         }
+     </script>
+
+    <style>
+    .myform fieldset{
+       border:none;
+       padding:0;
+     }
+     .myForm label {
+         padding: 0;
+        text-align: left;
+        margin-left:3em;
+        width:20em;
+     }
+
+    .myform textarea{
+             margin-left:7em;
+             width:30%;
+     }
+     .myform n{
+          margin-left:10em;
+      }
+     table,th,td{
+         border:1px solid black;
+      }
+   </style>
+  </head>
+  <body>
+    <form class="myform">
+   Name:<label ><input type="text"  id="name"/></label><br><br>
+
+    <fieldset>
+    Gender:
+    <p><label class="choice"> <input type="radio" name="gender" required value="male"> Male </label></p>
+    <p> <label class="choice"> <input type="radio" name="gender" required value="female">Female </label></p>
+    <p><label class="choice"> <input type="radio" name="gender" required value="other"> Other </label></p>
+    </fieldset>
+
+    Adress:<textarea name="comments" maxlength="500"></textarea><br><br>
+    
+    PhoneNumber:<label><input type="text" id="pno"/><lable><br><br>
+
+    <fieldset>
+    PaymentMethod: 
+  <p> <label class="choice"> <input type="radio" name="payment" required value="COD"> Cash On Delivery </label></p>
+  <p> <label class="choice"> <input type="radio" name="payment" required value="credit">Credit/Debit </label></p>
+   <p><label class="choice"> <input type="radio" name="payment" required value="netbanking">InternetBanking </label></p>
+    </fieldset>
+  
+    <h5><b>Product Options</b></h5>
+
+    <table>
+       <tr>
+          <th>Product</th>
+          <th>UnitPrice</th>
+          <th>Qty</th>
+       </tr>
+       <tr>
+          <td>USB Pendrive</td>
+          <td align="center">300</td>
+          <td><input type="text"  id="usb"/></td>
+       </tr>
+       <tr>
+          <td>Wireless Mouse</td>
+          <td align="center">200</td>
+          <td><input type="text"  id="mouse"/></td>
+       </tr>
+       <tr>
+          <td>KeyBoard</td>
+          <td align="center">400</td>
+          <td><input type="text" id="key"/></td>
+       </tr> 
+       <tr>
+          <td>Laptop</td>
+          <td align="center">33000</td>
+          <td><input type="text" id="laptop"/></td>
+       </tr>
+    </table>
+     <input type="button" value="submit" onclick="sendReq()">
+    </form>
+     
+    <div 
+    id="res">
+          <h4>Thank you for shopping</h4><br><br>
+    
+    </div>
+    
+</body>
+</html>
